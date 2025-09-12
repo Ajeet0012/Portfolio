@@ -1,73 +1,52 @@
-# Welcome to your Lovable project
+# Ajeet Portfolio
 
-## Project info
+A modern, responsive portfolio website built with React and Vite, showcasing projects, skills, and professional experience.
 
-**URL**: https://lovable.dev/projects/28335c59-1df4-40b3-9d2a-13ba07487e8c
+## 🚀 Live Demo
 
-## How can I edit this code?
+[View Portfolio](https://your-portfolio-url.vercel.app)
 
-There are several ways of editing your application.
+## 📋 Table of Contents
 
-**Use Lovable**
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Getting Started](#getting-started)
+- [Project Structure](#project-structure)
+- [Development](#development)
+- [Deployment](#deployment)
+- [Contributing](#contributing)
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/28335c59-1df4-40b3-9d2a-13ba07487e8c) and start prompting.
+## ✨ Features
 
-Changes made via Lovable will be committed automatically to this repo.
+- **Modern Design**: Clean and professional UI with dark/light theme support
+- **Responsive Layout**: Optimized for all device sizes
+- **Interactive Components**: Smooth animations and transitions
+- **Project Showcase**: Detailed project cards with live demos and source code links
+- **Skills Section**: Visual representation of technical skills
+- **Contact Form**: Functional contact form with validation
+- **SEO Optimized**: Meta tags and structured data for better search visibility
 
-**Use your preferred IDE**
+## 🛠️ Technologies Used
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+This project is built with modern web technologies:
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- **Frontend Framework**: React 18.3.1
+- **Build Tool**: Vite 5.4.19
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **UI Components**: shadcn/ui + Radix UI
+- **Routing**: React Router DOM
+- **Form Handling**: React Hook Form + Zod validation
+- **Icons**: Lucide React
+- **Animations**: Tailwind CSS animations
 
-Follow these steps:
+## 🏁 Getting Started
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Prerequisites
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+- Node.js 16.0 or higher
+- npm or yarn package manager
 
-# Step 3: Install the necessary dependencies.
-npm i
+### Installation
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/28335c59-1df4-40b3-9d2a-13ba07487e8c) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+1. **Clone the repository**
