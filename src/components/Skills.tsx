@@ -1,153 +1,161 @@
 import { useState } from 'react';
-import { Card } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { Code, Database, Wrench, Users } from 'lucide-react';
 
+type SkillItem = { name: string; level: number; description: string };
+type Categories = { [key: string]: { icon: React.ElementType; title: string; skills: SkillItem[] } };
+
+const skillCategories: Categories = {
+  programming: {
+    icon: Code,
+    title: 'Programming',
+    skills: [
+      { name: 'JavaScript', level: 90, description: 'ES6+, Async/Await, DOM Manipulation' },
+      { name: 'Python',     level: 85, description: 'Data Structures, Algorithms, Automation' },
+      { name: 'C++',        level: 80, description: 'OOP, STL, Competitive Programming' },
+      { name: 'Java',       level: 75, description: 'Object-Oriented Programming, Collections' },
+      { name: 'C',          level: 70, description: 'System Programming, Memory Management' },
+    ],
+  },
+  database: {
+    icon: Database,
+    title: 'Databases',
+    skills: [
+      { name: 'MongoDB', level: 85, description: 'NoSQL, Aggregation, Atlas Cloud' },
+      { name: 'MySQL',   level: 80, description: 'Relational Design, Complex Queries' },
+      { name: 'Prisma',  level: 75, description: 'ORM, Type-safe Database Access' },
+      { name: 'SQLite',  level: 70, description: 'Embedded Database, Local Storage' },
+    ],
+  },
+  tools: {
+    icon: Wrench,
+    title: 'Tools & Frameworks',
+    skills: [
+      { name: 'React.js',  level: 85, description: 'Hooks, Context, Component Design' },
+      { name: 'Node.js',   level: 80, description: 'Express, API Development, Middleware' },
+      { name: 'Git',       level: 85, description: 'Version Control, Branching, Collaboration' },
+      { name: 'VS Code',   level: 95, description: 'Extensions, Debugging, Git Integration' },
+    ],
+  },
+  soft: {
+    icon: Users,
+    title: 'Soft Skills',
+    skills: [
+      { name: 'Team Collaboration', level: 90, description: 'Cross-functional teamwork' },
+      { name: 'Problem Solving',    level: 88, description: 'Analytical thinking, debugging' },
+      { name: 'Communication',      level: 85, description: 'Technical docs, presentations' },
+      { name: 'Adaptability',       level: 87, description: 'Learning new technologies quickly' },
+    ],
+  },
+};
+
+const additionalTech = [
+  'Express.js', 'Clerk Auth', 'Twilio API', 'OpenAI', 'n8n',
+  'REST APIs', 'JWT', 'Bootstrap', 'Tailwind CSS', 'HTML', 'CSS',
+];
+
 const Skills = () => {
-  const [activeCategory, setActiveCategory] = useState('programming');
-
-  const skillCategories = {
-    programming: {
-      icon: Code,
-      title: "Programming Languages",
-      skills: [
-        { name: "JavaScript", level: 90, description: "ES6+, Async/Await, DOM Manipulation" },
-        { name: "Python", level: 85, description: "Data Structures, Algorithms, Automation" },
-        { name: "C++", level: 80, description: "OOP, STL, Competitive Programming" },
-        { name: "Java", level: 75, description: "Object-Oriented Programming, Collections" },
-        { name: "C", level: 70, description: "System Programming, Memory Management" }
-      ]
-    },
-    database: {
-      icon: Database,
-      title: "Database Management",
-      skills: [
-        { name: "MongoDB", level: 85, description: "NoSQL, Aggregation, Atlas Cloud" },
-        { name: "MySQL", level: 80, description: "Relational Design, Complex Queries" },
-        { name: "Prisma", level: 75, description: "ORM, Type-safe Database Access" },
-        { name: "SQLite", level: 70, description: "Embedded Database, Local Storage" }
-      ]
-    },
-    tools: {
-      icon: Wrench,
-      title: "Development Tools",
-      skills: [
-        { name: "VS Code", level: 95, description: "Extensions, Debugging, Git Integration" },
-        { name: "React.js", level: 85, description: "Hooks, Context, Component Design" },
-        { name: "Node.js", level: 80, description: "Express, API Development, Middleware" },
-        { name: "Git", level: 85, description: "Version Control, Branching, Collaboration" }
-      ]
-    },
-    soft: {
-      icon: Users,
-      title: "Interpersonal Skills",
-      skills: [
-        { name: "Team Collaboration", level: 90, description: "Cross-functional teamwork" },
-        { name: "Problem Solving", level: 88, description: "Analytical thinking, debugging" },
-        { name: "Communication", level: 85, description: "Technical documentation, presentations" },
-        { name: "Adaptability", level: 87, description: "Learning new technologies quickly" }
-      ]
-    }
-  };
-
+  const [active, setActive] = useState<keyof typeof skillCategories>('programming');
   const categories = Object.keys(skillCategories) as (keyof typeof skillCategories)[];
 
   return (
-    <section id="skills" className="py-20 px-4 bg-gradient-to-br from-background to-card">
-      <div className="max-w-6xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Technical <span className="text-accent">Skills</span>
+    <section id="skills" style={{ padding: '40px', backgroundColor: '#0a0a0a', minHeight: '100%' }}>
+      <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
+        {/* Header */}
+        <div style={{ marginBottom: '40px' }} className="animate-fade-in">
+          <p className="section-comment" style={{ marginBottom: '8px' }}>// section_02</p>
+          <h2 style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '22px', fontWeight: 700, color: '#ffffff', letterSpacing: '-0.01em' }}>
+            technical<span style={{ color: '#4ec9b0' }}>_skills</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-accent mx-auto rounded-full" />
-          <p className="text-muted-foreground mt-6 max-w-2xl mx-auto">
-            A comprehensive overview of my technical expertise and proficiencies
-          </p>
+          <div style={{ width: '40px', height: '1px', backgroundColor: '#4ec9b0', marginTop: '14px' }} />
         </div>
 
-        {/* Category Tabs */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12 animate-fade-in">
-          {categories.map((category) => {
-            const CategoryIcon = skillCategories[category].icon;
+        {/* Category tabs */}
+        <div
+          className="animate-fade-in"
+          style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '28px' }}
+          role="tablist"
+          aria-label="Skill categories"
+        >
+          {categories.map(cat => {
+            const Icon = skillCategories[cat].icon;
+            const isActive = active === cat;
             return (
               <button
-                key={category}
-                onClick={() => setActiveCategory(category)}
-                className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 ${
-                  activeCategory === category
-                    ? 'bg-gradient-primary text-primary-foreground shadow-glow'
-                    : 'bg-card-glass text-muted-foreground hover:text-foreground border border-border'
-                }`}
+                key={cat}
+                role="tab"
+                aria-selected={isActive}
+                id={`tab-${cat}`}
+                aria-controls={`panel-${cat}`}
+                onClick={() => setActive(cat)}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  padding: '6px 14px',
+                  borderRadius: '4px',
+                  border: isActive ? '1px solid #4ec9b0' : '1px solid #3c3c3c',
+                  backgroundColor: isActive ? 'rgba(78,201,176,0.1)' : 'transparent',
+                  color: isActive ? '#4ec9b0' : '#777777',
+                  fontSize: '11px',
+                  fontFamily: "'JetBrains Mono', monospace",
+                  cursor: 'pointer',
+                  transition: 'all 150ms',
+                }}
               >
-                <CategoryIcon className="w-5 h-5" />
-                {skillCategories[category].title}
+                <Icon size={13} />
+                {skillCategories[cat].title}
               </button>
             );
           })}
         </div>
 
-        {/* Skills Display */}
-        <div className="animate-fade-in">
-          <Card className="p-8 bg-card-glass border-border shadow-card backdrop-blur-sm">
-            <h3 className="text-2xl font-semibold text-foreground mb-8 text-center">
-              {skillCategories[activeCategory].title}
-            </h3>
-            
-            <div className="grid gap-6">
-              {skillCategories[activeCategory].skills.map((skill, index) => (
-                <div 
-                  key={skill.name}
-                  className="animate-fade-in-left group"
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  <div className="flex justify-between items-center mb-3">
-                    <div>
-                      <h4 className="text-lg font-medium text-foreground">
-                        {skill.name}
-                      </h4>
-                      <p className="text-sm text-muted-foreground">
-                        {skill.description}
-                      </p>
-                    </div>
-                    <Badge variant="secondary" className="ml-4">
-                      {skill.level}%
-                    </Badge>
+        {/* Active panel */}
+        <div
+          className="ds-card animate-fade-in"
+          id={`panel-${active}`}
+          role="tabpanel"
+          aria-labelledby={`tab-${active}`}
+          style={{ padding: '24px' }}
+        >
+          <div style={{ display: 'grid', gap: '18px' }}>
+            {skillCategories[active].skills.map((skill, i) => (
+              <div key={skill.name} style={{ animationDelay: `${i * 60}ms` }} className="animate-fade-in-left">
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '6px' }}>
+                  <div>
+                    <span style={{ fontSize: '12px', color: '#ffffff', fontFamily: "'JetBrains Mono', monospace", fontWeight: 600 }}>
+                      {skill.name}
+                    </span>
+                    <span style={{ fontSize: '10px', color: '#777777', marginLeft: '10px' }}>{skill.description}</span>
                   </div>
-                  
-                  {/* Skill Bar */}
-                  <div className="w-full bg-muted rounded-full h-3 overflow-hidden">
-                    <div 
-                      className="h-full bg-gradient-accent rounded-full transition-all duration-1000 ease-out group-hover:shadow-accent-glow"
-                      style={{ 
-                        width: `${skill.level}%`,
-                        animation: `fade-in-right 1s ease-out ${index * 100}ms`
-                      }}
-                    />
-                  </div>
+                  <span style={{
+                    fontSize: '10px',
+                    color: '#4ec9b0',
+                    border: '1px solid #3c3c3c',
+                    borderRadius: '2px',
+                    padding: '1px 6px',
+                    fontFamily: "'JetBrains Mono', monospace",
+                    flexShrink: 0,
+                    marginLeft: '12px',
+                  }}>
+                    {skill.level}%
+                  </span>
                 </div>
-              ))}
-            </div>
-          </Card>
+                <div className="skill-track" aria-label={`${skill.name} proficiency ${skill.level}%`}>
+                  <div className="skill-fill" style={{ width: `${skill.level}%` }} />
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Additional Technologies */}
-        <div className="mt-12 text-center animate-fade-in">
-          <h4 className="text-xl font-semibold text-foreground mb-6">
-            Additional Technologies & Frameworks
-          </h4>
-          <div className="flex flex-wrap justify-center gap-3">
-            {[
-              "Express.js", "Clerk Auth", "Twilio API", "OpenAI", "n8n", 
-              "REST APIs", "JWT", "Bootstrap", "Tailwind CSS", "Responsive Design"
-            ].map((tech) => (
-              <Badge 
-                key={tech}
-                variant="outline" 
-                className="border-accent text-accent hover:bg-accent hover:text-accent-foreground transition-colors duration-300 px-4 py-2"
-              >
-                {tech}
-              </Badge>
+        {/* Additional tech */}
+        <div className="animate-fade-in" style={{ marginTop: '32px' }}>
+          <p style={{ fontSize: '10px', color: '#777777', marginBottom: '12px', fontFamily: "'JetBrains Mono', monospace" }}>
+            // additional_technologies
+          </p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+            {additionalTech.map(tech => (
+              <span key={tech} className="token-chip">{tech}</span>
             ))}
           </div>
         </div>

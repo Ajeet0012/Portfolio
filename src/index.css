@@ -2,128 +2,382 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Dark Cyberpunk Portfolio Design System */
+/* ============================================
+   AJEET OJHA PORTFOLIO — DESIGN SYSTEM TOKENS
+   VS Code / Terminal Dark Aesthetic
+   ============================================ */
 
 @layer base {
   :root {
-    /* Dark Theme Base Colors */
-    --background: 222 47% 3%;
-    --foreground: 210 40% 95%;
+    /* ---- Surface Tokens ---- */
+    --surface-base: #000000;
+    --surface-raised: #1e1e1e;
+    --surface-strong: #ff5f57;
 
-    /* Card Colors with Glassmorphism */
-    --card: 220 30% 8%;
-    --card-foreground: 210 40% 95%;
-    --card-glass: 220 30% 10%;
+    /* ---- Text Tokens ---- */
+    --text-primary: #777777;
+    --text-secondary: #ffffff;
+    --text-tertiary: #cccccc;
+    --text-inverse: #4ec9b0;
 
-    /* Interactive Elements */
-    --popover: 222 47% 6%;
-    --popover-foreground: 210 40% 95%;
+    /* ---- Border Tokens ---- */
+    --border-default: #e5e7eb;
+    --border-muted: #3c3c3c;
 
-    /* Primary Brand Colors - Electric Blue/Purple */
-    --primary: 262 83% 58%;
-    --primary-foreground: 210 40% 98%;
-    --primary-glow: 262 83% 70%;
+    /* ---- Shadow ---- */
+    --shadow-1: rgba(110, 64, 201, 0.1) 0px 0px 8px 0px;
+    --shadow-teal: rgba(78, 201, 176, 0.15) 0px 0px 12px 0px;
 
-    /* Secondary - Deep Purple */
-    --secondary: 254 71% 20%;
-    --secondary-foreground: 210 40% 95%;
+    /* ---- Radius ---- */
+    --radius-xs: 2px;
+    --radius-sm: 4px;
+    --radius-md: 5px;
+    --radius-lg: 6px;
+    --radius-xl: 9999px;
 
-    /* Accent - Cyan */
-    --accent: 188 94% 58%;
-    --accent-foreground: 220 30% 8%;
+    /* ---- Motion ---- */
+    --motion-instant: 100ms;
+    --motion-fast: 150ms;
+    --motion-normal: 300ms;
 
-    /* Muted Colors */
-    --muted: 220 30% 12%;
-    --muted-foreground: 215 20% 65%;
+    /* ---- Spacing ---- */
+    --space-1: 2px;
+    --space-2: 3px;
+    --space-3: 5px;
+    --space-4: 6px;
+    --space-5: 7px;
+    --space-6: 8px;
+    --space-7: 10px;
+    --space-8: 12px;
 
-    /* Destructive */
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    /* ---- shadcn/ui compatible mappings ---- */
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
 
-    /* UI Elements */
-    --border: 220 30% 15%;
-    --input: 220 30% 12%;
-    --ring: 262 83% 58%;
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 100%;
+    --card-glass: 0 0% 12%;
+
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 168 52% 59%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 100%;
+
+    --accent: 168 52% 59%;
+    --accent-foreground: 0 0% 0%;
+
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 47%;
+
+    --destructive: 3 91% 67%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 24%;
+    --input: 0 0% 12%;
+    --ring: 168 52% 59%;
+
+    --radius: 0.375rem;
 
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(262 83% 58%), hsl(254 71% 45%));
-    --gradient-secondary: linear-gradient(45deg, hsl(254 71% 20%), hsl(262 83% 30%));
-    --gradient-accent: linear-gradient(90deg, hsl(188 94% 58%), hsl(262 83% 58%));
-    --gradient-hero: linear-gradient(135deg, hsl(222 47% 3%), hsl(254 71% 8%), hsl(262 83% 12%));
+    --gradient-primary: linear-gradient(135deg, #4ec9b0 0%, #2aa88e 100%);
+    --gradient-secondary: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+    --gradient-accent: linear-gradient(90deg, #4ec9b0, #6edfc8);
+    --gradient-hero: linear-gradient(180deg, #000000 0%, #0d0d0d 100%);
 
-    /* Shadows with Glow Effects */
-    --shadow-glow: 0 0 30px hsl(262 83% 58% / 0.4);
-    --shadow-accent-glow: 0 0 25px hsl(188 94% 58% / 0.3);
-    --shadow-card: 0 8px 32px hsl(222 47% 3% / 0.8);
+    /* Shadows */
+    --shadow-glow: rgba(78, 201, 176, 0.2) 0px 0px 20px 0px;
+    --shadow-accent-glow: rgba(78, 201, 176, 0.3) 0px 0px 25px 0px;
+    --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.6);
 
-    /* Animation Values */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-
-    --radius: 0.75rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Sidebar (unchanged) */
+    --sidebar-background: 0 0% 0%;
+    --sidebar-foreground: 0 0% 47%;
+    --sidebar-primary: 168 52% 59%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 0 0% 12%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 24%;
+    --sidebar-ring: 168 52% 59%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 168 52% 59%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 47%;
+    --accent: 168 52% 59%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 3 91% 67%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 24%;
+    --input: 0 0% 12%;
+    --ring: 168 52% 59%;
   }
 }
 
 @layer base {
   * {
     @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    font-size: 11px;
+    line-height: 16.5px;
+    scroll-behavior: smooth;
   }
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 400;
+    background-color: #000000;
+    color: #777777;
+    -webkit-font-smoothing: antialiased;
   }
+
+  /* ---- Focus Visible — WCAG AA ---- */
+  :focus-visible {
+    outline: 2px solid #4ec9b0;
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* ---- Reduced Motion ---- */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* ---- Selection ---- */
+  ::selection {
+    background-color: rgba(78, 201, 176, 0.25);
+    color: #ffffff;
+  }
+}
+
+@layer components {
+  /* ---- Terminal dot grid overlay ---- */
+  .dot-grid {
+    background-image: radial-gradient(circle, #3c3c3c 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  /* ---- Section comment style header ---- */
+  .section-comment {
+    font-family: 'JetBrains Mono', monospace;
+    color: #4ec9b0;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+  }
+
+  /* ---- Teal accent text ---- */
+  .text-teal {
+    color: #4ec9b0;
+  }
+
+  /* ---- Token-chip / badge ---- */
+  .token-chip {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #3c3c3c;
+    color: #4ec9b0;
+    border-radius: var(--radius-sm);
+    padding: 2px 8px;
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+    transition: background-color var(--motion-fast), color var(--motion-fast);
+  }
+
+  .token-chip:hover {
+    background-color: rgba(78, 201, 176, 0.1);
+  }
+
+  /* ---- Card base ---- */
+  .ds-card {
+    background-color: #1e1e1e;
+    border: 1px solid #3c3c3c;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-1);
+    transition: box-shadow var(--motion-normal), border-color var(--motion-normal);
+  }
+
+  .ds-card:hover {
+    box-shadow: var(--shadow-teal);
+    border-color: rgba(78, 201, 176, 0.3);
+  }
+
+  /* ---- Primary button ---- */
+  .btn-primary {
+    background-color: #4ec9b0;
+    color: #000000;
+    border-radius: var(--radius-sm);
+    padding: 8px 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    border: none;
+    cursor: pointer;
+    transition: background-color var(--motion-fast), transform var(--motion-fast);
+  }
+
+  .btn-primary:hover {
+    background-color: #6edfc8;
+    transform: translateY(-1px);
+  }
+
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+
+  /* ---- Ghost button ---- */
+  .btn-ghost {
+    background-color: transparent;
+    color: #4ec9b0;
+    border: 1px solid #4ec9b0;
+    border-radius: var(--radius-sm);
+    padding: 7px 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: background-color var(--motion-fast), color var(--motion-fast);
+  }
+
+  .btn-ghost:hover {
+    background-color: rgba(78, 201, 176, 0.1);
+  }
+
+  /* ---- Cursor blink ---- */
+  .cursor-blink {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background-color: #4ec9b0;
+    margin-left: 2px;
+    vertical-align: middle;
+    animation: blink 1s step-end infinite;
+  }
+
+  /* ---- Skill bar track ---- */
+  .skill-track {
+    width: 100%;
+    height: 3px;
+    background-color: #3c3c3c;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+  }
+
+  .skill-fill {
+    height: 100%;
+    background-color: #4ec9b0;
+    border-radius: var(--radius-xl);
+    transition: width 1s ease-out;
+  }
+
+  /* ---- Timeline ---- */
+  .timeline-line {
+    position: absolute;
+    left: 7px;
+    top: 16px;
+    bottom: 0;
+    width: 1px;
+    background-color: #3c3c3c;
+  }
+
+  .timeline-dot {
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 15px;
+    height: 15px;
+    background-color: #4ec9b0;
+    border-radius: 50%;
+    border: 2px solid #000000;
+    box-shadow: 0 0 0 1px #4ec9b0;
+  }
+
+  /* ---- Scrollbar ---- */
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #000000;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #3c3c3c;
+    border-radius: 2px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #4ec9b0;
+  }
+}
+
+@layer utilities {
+  /* Typography scale */
+  .text-xs-mono { font-size: 11px; line-height: 16.5px; }
+  .text-sm-mono { font-size: 12px; line-height: 18px; }
+  .text-md-mono { font-size: 14px; line-height: 21px; }
+  .text-lg-mono { font-size: 16px; line-height: 24px; }
+  .text-xl-hero { font-size: clamp(42px, 8vw, 68px); line-height: 1.05; }
+
+  /* Gradient text */
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+/* ---- Keyframes ---- */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in-left {
+  from { opacity: 0; transform: translateX(-16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fade-in-right {
+  from { opacity: 0; transform: translateX(16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }

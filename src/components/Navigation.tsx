@@ -1,26 +1,26 @@
 import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
 import { Menu, X, Github, Mail } from 'lucide-react';
+
+const navItems = [
+  { id: 'hero',         label: 'home' },
+  { id: 'about',        label: 'about' },
+  { id: 'skills',       label: 'skills' },
+  { id: 'projects',     label: 'projects' },
+  { id: 'education',    label: 'education' },
+  { id: 'certificates', label: 'certs' },
+  { id: 'contact',      label: 'contact' },
+];
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
-
-  const navItems = [
-    { id: 'hero', label: 'Home' },
-    { id: 'about', label: 'About' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'education', label: 'Education' },
-    { id: 'certificates', label: 'Certificates' },
-    { id: 'contact', label: 'Contact' }
-  ];
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
       const sections = navItems.map(item => item.id);
-      const scrollPosition = window.scrollY + 100;
-
+      const scrollPosition = window.scrollY + 80;
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = document.getElementById(sections[i]);
         if (section && section.offsetTop <= scrollPosition) {
@@ -29,131 +29,174 @@ const Navigation = () => {
         }
       }
     };
-
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Call once to set initial active section
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollToSection = (sectionId: string) => {
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
-      setIsOpen(false);
-    }
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+    setIsOpen(false);
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div 
-            className="text-2xl font-bold text-foreground cursor-pointer hover:text-accent transition-colors duration-300"
-            onClick={() => scrollToSection('hero')}
-          >
-            AJEET<span className="text-accent">.</span>
-          </div>
+    <nav
+      role="navigation"
+      aria-label="Main navigation"
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 50,
+        backgroundColor: scrolled ? 'rgba(0,0,0,0.95)' : '#000000',
+        borderBottom: '1px solid #3c3c3c',
+        backdropFilter: 'blur(8px)',
+        transition: 'background-color 300ms',
+        fontFamily: "'JetBrains Mono', monospace",
+      }}
+    >
+      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 24px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '52px' }}>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
+          {/* Logo */}
+          <button
+            onClick={() => scrollToSection('hero')}
+            aria-label="Go to top"
+            style={{
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '2px',
+              padding: '4px 0',
+            }}
+          >
+            <span style={{ color: '#777777', fontSize: '12px' }}>~/</span>
+            <span style={{ color: '#ffffff', fontSize: '13px', fontWeight: 600, letterSpacing: '0.05em' }}>ajeet_ojha</span>
+            <span className="cursor-blink" />
+          </button>
+
+          {/* Desktop Nav */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '28px' }} className="hidden md:flex">
+            {navItems.map(item => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`text-sm font-medium transition-all duration-300 hover:text-accent relative ${
-                  activeSection === item.id 
-                    ? 'text-accent' 
-                    : 'text-muted-foreground'
-                }`}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  fontSize: '11px',
+                  fontFamily: "'JetBrains Mono', monospace",
+                  color: activeSection === item.id ? '#4ec9b0' : '#777777',
+                  padding: '4px 0',
+                  borderBottom: activeSection === item.id ? '1px solid #4ec9b0' : '1px solid transparent',
+                  transition: 'color 150ms, border-color 150ms',
+                  letterSpacing: '0.03em',
+                }}
+                onMouseEnter={e => { if (activeSection !== item.id) (e.target as HTMLElement).style.color = '#cccccc'; }}
+                onMouseLeave={e => { if (activeSection !== item.id) (e.target as HTMLElement).style.color = '#777777'; }}
               >
                 {item.label}
-                {activeSection === item.id && (
-                  <div className="absolute -bottom-2 left-0 right-0 h-0.5 bg-accent rounded-full animate-scale-in" />
-                )}
               </button>
             ))}
           </div>
 
-          {/* Social Links & Mobile Menu */}
-          <div className="flex items-center gap-4">
-            {/* Desktop Social Links */}
-            <div className="hidden md:flex items-center gap-4">
-              <a 
-                href="https://github.com/Ajeet0012" 
-                target="_blank" 
+          {/* Right — social + mobile */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+            <div className="hidden md:flex" style={{ alignItems: 'center', gap: '14px' }}>
+              <a
+                href="https://github.com/Ajeet0012"
+                target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-accent transition-colors duration-300"
+                aria-label="GitHub profile"
+                style={{ color: '#777777', display: 'flex', alignItems: 'center', transition: 'color 150ms' }}
+                onMouseEnter={e => (e.currentTarget.style.color = '#4ec9b0')}
+                onMouseLeave={e => (e.currentTarget.style.color = '#777777')}
               >
-                <Github className="w-5 h-5" />
+                <Github size={15} />
               </a>
-              <a 
+              <a
                 href="mailto:ajeetojha9057@gmail.com"
-                className="text-muted-foreground hover:text-accent transition-colors duration-300"
+                aria-label="Send email"
+                style={{ color: '#777777', display: 'flex', alignItems: 'center', transition: 'color 150ms' }}
+                onMouseEnter={e => (e.currentTarget.style.color = '#4ec9b0')}
+                onMouseLeave={e => (e.currentTarget.style.color = '#777777')}
               >
-                <Mail className="w-5 h-5" />
+                <Mail size={15} />
               </a>
-              <Button 
+              <button
                 onClick={() => scrollToSection('contact')}
-                className="bg-gradient-primary text-primary-foreground px-6 py-2 rounded-lg font-medium shadow-glow hover:shadow-accent-glow transition-all duration-300 transform hover:scale-105"
+                className="btn-primary"
+                style={{ fontSize: '10px', padding: '5px 14px' }}
               >
-                Let's Talk
-              </Button>
+                hire me
+              </button>
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile toggle */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden text-foreground hover:text-accent transition-colors duration-300"
+              aria-expanded={isOpen}
+              aria-label={isOpen ? 'Close menu' : 'Open menu'}
+              className="md:hidden"
+              style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#777777', display: 'flex' }}
             >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isOpen ? <X size={18} /> : <Menu size={18} />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden py-4 animate-fade-in">
-            <div className="space-y-3">
-              {navItems.map((item) => (
+          <div
+            className="md:hidden animate-slide-down"
+            style={{
+              borderTop: '1px solid #3c3c3c',
+              padding: '16px 0',
+            }}
+          >
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+              {navItems.map(item => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`block w-full text-left px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
-                    activeSection === item.id
-                      ? 'text-accent bg-accent/10'
-                      : 'text-muted-foreground hover:text-foreground hover:bg-muted'
-                  }`}
+                  style={{
+                    background: activeSection === item.id ? 'rgba(78,201,176,0.08)' : 'none',
+                    border: 'none',
+                    cursor: 'pointer',
+                    textAlign: 'left',
+                    padding: '10px 12px',
+                    fontSize: '12px',
+                    fontFamily: "'JetBrains Mono', monospace",
+                    color: activeSection === item.id ? '#4ec9b0' : '#777777',
+                    borderRadius: '4px',
+                    letterSpacing: '0.03em',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                  }}
                 >
+                  <span style={{ color: '#3c3c3c' }}>&gt;</span>
                   {item.label}
                 </button>
               ))}
-              
-              {/* Mobile Social Links */}
-              <div className="flex items-center gap-4 px-4 pt-4 border-t border-border">
-                <a 
-                  href="https://github.com/Ajeet0012" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-accent transition-colors duration-300"
-                >
-                  <Github className="w-5 h-5" />
+              <div style={{ borderTop: '1px solid #3c3c3c', marginTop: '8px', paddingTop: '12px', display: 'flex', gap: '12px', padding: '12px' }}>
+                <a href="https://github.com/Ajeet0012" target="_blank" rel="noopener noreferrer" aria-label="GitHub" style={{ color: '#777777' }}>
+                  <Github size={16} />
                 </a>
-                <a 
-                  href="mailto:ajeetojha9057@gmail.com"
-                  className="text-muted-foreground hover:text-accent transition-colors duration-300"
-                >
-                  <Mail className="w-5 h-5" />
+                <a href="mailto:ajeetojha9057@gmail.com" aria-label="Email" style={{ color: '#777777' }}>
+                  <Mail size={16} />
                 </a>
-                <Button 
-                  onClick={() => {
-                    scrollToSection('contact');
-                    setIsOpen(false);
-                  }}
-                  className="ml-auto bg-gradient-primary text-primary-foreground px-4 py-2 rounded-lg font-medium shadow-glow"
+                <button
+                  onClick={() => scrollToSection('contact')}
+                  className="btn-primary"
+                  style={{ fontSize: '10px', padding: '4px 12px', marginLeft: 'auto' }}
                 >
-                  Let's Talk
-                </Button>
+                  hire me
+                </button>
               </div>
             </div>
           </div>

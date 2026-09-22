@@ -1,102 +1,136 @@
-import { Card } from '@/components/ui/card';
-import { Code, Database, Users, Trophy } from 'lucide-react';
+const SectionHeader = ({
+  comment,
+  title,
+  highlight,
+  sub,
+}: {
+  comment: string;
+  title: string;
+  highlight: string;
+  sub?: string;
+}) => (
+  <div style={{ marginBottom: '40px' }} className="animate-fade-in">
+    <p className="section-comment" style={{ marginBottom: '8px' }}>{comment}</p>
+    <h2
+      style={{
+        fontFamily: "'JetBrains Mono', monospace",
+        fontSize: '22px',
+        fontWeight: 700,
+        color: '#ffffff',
+        marginBottom: sub ? '10px' : 0,
+        letterSpacing: '-0.01em',
+      }}
+    >
+      {title}
+      <span style={{ color: '#4ec9b0' }}>_{highlight}</span>
+    </h2>
+    {sub && (
+      <p style={{ fontSize: '11px', color: '#777777', maxWidth: '520px', lineHeight: '18px' }}>
+        {sub}
+      </p>
+    )}
+    <div
+      style={{ width: '40px', height: '1px', backgroundColor: '#4ec9b0', marginTop: '14px' }}
+    />
+  </div>
+);
 
 const About = () => {
   const highlights = [
     {
-      icon: Code,
-      title: "Programming",
-      description: "Proficient in multiple languages including C++, Python, JavaScript, and Java"
+      prompt: '01',
+      title: 'Programming',
+      desc: 'C, C++, JavaScript, Java — proficient across systems and web stacks.',
     },
     {
-      icon: Database,
-      title: "Database Management",
-      description: "Experience with MySQL, MongoDB, SQLite, and Prisma ORM"
+      prompt: '02',
+      title: 'Databases',
+      desc: 'MySQL, MongoDB, SQLite, Prisma ORM — relational and NoSQL experience.',
     },
     {
-      icon: Users,
-      title: "Team Collaboration",
-      description: "Strong communication skills with adaptability in team environments"
+      prompt: '03',
+      title: 'Collaboration',
+      desc: 'Strong team communication, adaptability, and cross-functional skills.',
     },
     {
-      icon: Trophy,
-      title: "Problem Solver",
-      description: "Enthusiastic contributor focused on delivering impactful solutions"
-    }
+      prompt: '04',
+      title: 'Problem Solving',
+      desc: 'Analytical mindset focused on delivering clean, scalable solutions.',
+    },
   ];
 
   return (
-    <section id="about" className="py-20 px-4">
-      <div className="max-w-6xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            About <span className="text-accent">Me</span>
-          </h2>
-          <div className="w-24 h-1 bg-gradient-accent mx-auto rounded-full" />
-        </div>
+    <section id="about" style={{ padding: '40px', backgroundColor: '#000000' }}>
+      <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
+        <SectionHeader
+          comment="// section_01"
+          title="about"
+          highlight="me"
+          sub="Motivated and detail-oriented Full Stack Developer fresher with hands-on knowledge of front-end and back-end technologies."
+        />
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Professional Summary */}
-          <div className="animate-fade-in-left">
-            <Card className="p-8 bg-card-glass border-border shadow-card backdrop-blur-sm">
-              <h3 className="text-2xl font-semibold text-foreground mb-6">
-                Professional Summary
-              </h3>
-              <p className="text-muted-foreground leading-relaxed mb-6">
-                Enthusiastic Computer Science student with strong problem-solving skills and 
-                proficiency in multiple programming languages. Adept at effective communication 
-                and collaboration within team environments.
-              </p>
-              <p className="text-muted-foreground leading-relaxed">
-                Seeking opportunities to apply technical expertise and deliver impactful 
-                solutions that contribute to organizational success. Currently pursuing 
-                B.Tech in Computer Science Engineering with a focus on full-stack development 
-                and emerging technologies.
-              </p>
-            </Card>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '40px',
+            alignItems: 'start',
+          }}
+        >
+          {/* Summary */}
+          <div className="animate-fade-in-left ds-card" style={{ padding: '24px' }}>
+            <p style={{ fontSize: '10px', color: '#4ec9b0', fontFamily: "'JetBrains Mono', monospace", marginBottom: '12px' }}>
+              professional_summary.md
+            </p>
+            <p style={{ fontSize: '12px', color: '#777777', lineHeight: '20px', marginBottom: '14px' }}>
+              Enthusiastic Software Developer with strong problem-solving skills and proficiency in multiple
+              programming languages. Adept at effective communication and collaboration within team environments.
+            </p>
+            <p style={{ fontSize: '12px', color: '#777777', lineHeight: '20px', marginBottom: '20px' }}>
+              Seeking opportunities to apply technical expertise and deliver impactful solutions that
+              contribute to organisational success. Currently pursuing B.Tech in CSE from
+              Shri Balaji College of Engineering &amp; Technology, Jaipur.
+            </p>
+            <div style={{ borderTop: '1px solid #3c3c3c', paddingTop: '16px' }}>
+              {[
+                { label: 'location', value: 'Jaipur, Rajasthan' },
+                { label: 'email',    value: 'ajeetojha9057@gmail.com' },
+                { label: 'phone',    value: '+91 9057524558' },
+                { label: 'github',   value: 'github.com/Ajeet0012' },
+              ].map(({ label, value }) => (
+                <div key={label} style={{ display: 'flex', gap: '8px', marginBottom: '6px', fontSize: '11px' }}>
+                  <span style={{ color: '#3c3c3c', minWidth: '64px' }}>{label}:</span>
+                  <span style={{ color: '#cccccc' }}>{value}</span>
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* Highlights Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 animate-fade-in-right">
-            {highlights.map((item, index) => (
-              <Card 
-                key={index}
-                className="p-6 bg-card-glass border-border shadow-card backdrop-blur-sm hover:shadow-glow transition-all duration-300 transform hover:scale-105 group"
-              >
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center mb-4 group-hover:shadow-accent-glow transition-all duration-300">
-                    <item.icon className="w-6 h-6 text-primary-foreground" />
-                  </div>
-                  <h4 className="text-lg font-semibold text-foreground mb-3">
-                    {item.title}
-                  </h4>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {item.description}
-                  </p>
+          {/* Highlights grid */}
+          <div
+            className="animate-fade-in-right"
+            style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}
+          >
+            {highlights.map(item => (
+              <div key={item.prompt} className="ds-card" style={{ padding: '18px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+                  <span style={{
+                    fontSize: '9px',
+                    color: '#000000',
+                    backgroundColor: '#4ec9b0',
+                    borderRadius: '2px',
+                    padding: '1px 5px',
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontWeight: 700,
+                  }}>
+                    {item.prompt}
+                  </span>
+                  <span style={{ fontSize: '12px', color: '#ffffff', fontWeight: 600 }}>{item.title}</span>
                 </div>
-              </Card>
+                <p style={{ fontSize: '11px', color: '#777777', lineHeight: '17px' }}>{item.desc}</p>
+              </div>
             ))}
           </div>
-        </div>
-
-        {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 animate-fade-in">
-          {[
-            { number: "2022", label: "Started B.Tech" },
-            { number: "6.7", label: "Current CGPA" },
-            { number: "2+", label: "Major Projects" },
-            { number: "5+", label: "Technologies" }
-          ].map((stat, index) => (
-            <div key={index} className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-accent mb-2">
-                {stat.number}
-              </div>
-              <div className="text-muted-foreground text-sm">
-                {stat.label}
-              </div>
-            </div>
-          ))}
         </div>
       </div>
     </section>
