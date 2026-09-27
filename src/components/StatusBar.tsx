@@ -13,8 +13,11 @@ const StatusBar = () => {
         padding: '0 10px',
         fontSize: '12px',
         fontFamily: 'system-ui, -apple-system, sans-serif',
-        zIndex: 100
+        zIndex: 100,
+        overflowX: 'auto',
+        whiteSpace: 'nowrap',
       }}
+      className="hide-scrollbar"
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '4px', cursor: 'pointer' }}>
@@ -28,12 +31,12 @@ const StatusBar = () => {
       </div>
 
       <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-        <div style={{ cursor: 'pointer' }}>UTF-8</div>
-        <div style={{ cursor: 'pointer' }}>CRLF</div>
+        <div className="hidden sm:block" style={{ cursor: 'pointer' }}>UTF-8</div>
+        <div className="hidden sm:block" style={{ cursor: 'pointer' }}>CRLF</div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '4px', cursor: 'pointer' }}>
-          <span>{'{ }'}</span> TypeScript React
+          <span>{'{ }'}</span> <span className="hidden sm:inline">TypeScript React</span><span className="sm:hidden">TSX</span>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '4px', cursor: 'pointer' }}>
+        <div className="hidden md:flex" style={{ alignItems: 'center', gap: '4px', cursor: 'pointer' }}>
           <CheckCheck size={14} /> Prettier
         </div>
         <div style={{ cursor: 'pointer' }}>

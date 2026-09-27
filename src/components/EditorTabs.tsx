@@ -1,10 +1,11 @@
-import { X } from 'lucide-react';
+import { X, Menu } from 'lucide-react';
 
 interface EditorTabsProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
   openTabs: string[];
   onCloseTab: (tabId: string) => void;
+  onMenuClick?: () => void;
 }
 
 const fileMap: Record<string, { label: string; color: string }> = {
@@ -17,9 +18,18 @@ const fileMap: Record<string, { label: string; color: string }> = {
   contact: { label: 'contact.tsx', color: '#519aba' },
 };
 
-const EditorTabs = ({ activeTab, setActiveTab, openTabs, onCloseTab }: EditorTabsProps) => {
+const EditorTabs = ({ activeTab, setActiveTab, openTabs, onCloseTab, onMenuClick }: EditorTabsProps) => {
   return (
-    <div style={{ display: 'flex', backgroundColor: '#181818', overflowX: 'auto', borderBottom: '1px solid #2b2b2b' }}>
+    <div style={{ display: 'flex', backgroundColor: '#181818', overflowX: 'auto', borderBottom: '1px solid #2b2b2b' }} className="editor-tabs-container hide-scrollbar">
+      {onMenuClick && (
+        <button 
+          onClick={onMenuClick}
+          className="md:hidden flex items-center justify-center text-[#777777] hover:text-white px-3"
+          style={{ borderRight: '1px solid #2b2b2b', flexShrink: 0, backgroundColor: 'transparent', border: 'none', cursor: 'pointer', borderRightWidth: '1px', borderRightStyle: 'solid', borderRightColor: '#2b2b2b' }}
+        >
+          <Menu size={18} />
+        </button>
+      )}
       {openTabs.map(tabId => {
         const file = fileMap[tabId];
         const isActive = activeTab === tabId;

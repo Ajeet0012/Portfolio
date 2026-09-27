@@ -16,12 +16,16 @@ const Index = () => {
   const [activeTab, setActiveTab] = useState("hero");
   const [openTabs, setOpenTabs] = useState<string[]>(["hero"]);
   const [activeActivityBar, setActiveActivityBar] = useState("explorer");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const handleTabClick = (tabId: string) => {
     if (!openTabs.includes(tabId)) {
       setOpenTabs([...openTabs, tabId]);
     }
     setActiveTab(tabId);
+    if (window.innerWidth < 768) {
+      setSidebarOpen(false);
+    }
   };
 
   const handleCloseTab = (tabId: string) => {
@@ -48,20 +52,31 @@ const Index = () => {
   return (
     <div className="h-screen w-screen flex flex-col bg-[#000000] text-foreground overflow-hidden">
       {/* Top Main Area */}
-      <div className="flex flex-1 overflow-hidden">
-        {/* Left Activity Bar */}
-        <ActivityBar activeActivityBar={activeActivityBar} setActiveActivityBar={setActiveActivityBar} />
+      <div className="flex flex-1 overflow-hidden relative">
+        {/* Mobile overlay */}
+        {sidebarOpen && (
+          <div 
+            className="md:hidden fixed inset-0 z-40 bg-black/50" 
+            onClick={() => setSidebarOpen(false)}
+          />
+        )}
         
-        {/* Left Sidebar (Explorer) */}
-        <Sidebar activeTab={activeTab} setActiveTab={handleTabClick} activeActivityBar={activeActivityBar} />
+        {/* Left Side (ActivityBar + Sidebar) */}
+        <div 
+          className={`flex h-full md:relative absolute z-50 transition-transform duration-300 ease-in-out ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 bg-[#000000]`}
+        >
+          <ActivityBar activeActivityBar={activeActivityBar} setActiveActivityBar={setActiveActivityBar} />
+          <Sidebar activeTab={activeTab} setActiveTab={handleTabClick} activeActivityBar={activeActivityBar} />
+        </div>
         
         {/* Right Editor Area */}
-        <div className="flex flex-col flex-1 overflow-hidden">
+        <div className="flex flex-col flex-1 overflow-hidden min-w-0">
           <EditorTabs 
             activeTab={activeTab} 
             setActiveTab={setActiveTab} 
             openTabs={openTabs} 
             onCloseTab={handleCloseTab} 
+            onMenuClick={() => setSidebarOpen(true)}
           />
           
           {/* Scrollable Content Pane */}

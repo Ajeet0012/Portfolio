@@ -107,10 +107,7 @@ const About = () => {
           </div>
 
           {/* Highlights grid */}
-          <div
-            className="animate-fade-in-right"
-            style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}
-          >
+          <div className="animate-fade-in-right grid grid-cols-1 sm:grid-cols-2 gap-3">
             {highlights.map(item => (
               <div key={item.prompt} className="ds-card" style={{ padding: '18px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>

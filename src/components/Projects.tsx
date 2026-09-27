@@ -138,7 +138,7 @@ const Projects = () => (
             </div>
 
             {/* Body */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '24px', flexWrap: 'wrap' }}>
+            <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6">
               <div>
                 <p style={{ fontSize: '12px', color: '#777777', lineHeight: '20px', marginBottom: '16px' }}>
                   {project.description}

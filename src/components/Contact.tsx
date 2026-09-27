@@ -131,7 +131,7 @@ const Contact = () => {
               // send_a_message
             </p>
             <form onSubmit={handleSubmit} noValidate>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '12px' }}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
                 <div>
                   <label htmlFor="contact-name" style={{ display: 'block', fontSize: '10px', color: '#777777', marginBottom: '5px', fontFamily: "'JetBrains Mono', monospace" }}>
                     name
